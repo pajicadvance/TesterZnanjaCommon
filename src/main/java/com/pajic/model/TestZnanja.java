@@ -20,15 +20,25 @@ public class TestZnanja implements GenericEntity {
     private String naziv;
     private double poeniZaProlaz;
     private List<Pitanje> listaPitanja;
+    private TipTestaZnanja tipTestaZnanja;
 
     public TestZnanja() {
     }
 
-    public TestZnanja(long id, String naziv, double poeniZaProlaz, List<Pitanje> listaPitanja) {
+    public TestZnanja(long id, String naziv, double poeniZaProlaz, List<Pitanje> listaPitanja, TipTestaZnanja tipTestaZnanja) {
         this.id = id;
         this.naziv = naziv;
         this.poeniZaProlaz = poeniZaProlaz;
         this.listaPitanja = listaPitanja;
+        this.tipTestaZnanja = tipTestaZnanja;
+    }
+
+    public TipTestaZnanja getTipTestaZnanja() {
+        return tipTestaZnanja;
+    }
+
+    public void setTipTestaZnanja(TipTestaZnanja tipTestaZnanja) {
+        this.tipTestaZnanja = tipTestaZnanja;
     }
 
     public long getId() {
@@ -66,18 +76,19 @@ public class TestZnanja implements GenericEntity {
 
     @Override
     public String getColumnNamesForInsert() {
-        return "id, naziv, poeni_za_prolaz";
+        return "id, naziv, poeni_za_prolaz, tip_testa_znanja_id";
     }
 
     @Override
     public String getInsertValues() {
-        return "(?,?,?)";
+        return "(?,?,?,?)";
     }
 
     @Override
     public String getUpdateValues() {
         return    "naziv='" + naziv + "', "
-                + "poeni_za_prolaz=" + poeniZaProlaz;
+                + "poeni_za_prolaz=" + poeniZaProlaz + ", "
+                + "tip_testa_znanja_id" + tipTestaZnanja.getId();
     }
 
     @Override
@@ -87,7 +98,7 @@ public class TestZnanja implements GenericEntity {
 
     @Override
     public GenericEntity selectObject(ResultSet rs) throws SQLException {
-        return new TestZnanja(rs.getLong("id"), rs.getString("naziv"), rs.getDouble("poeni_za_prolaz"), null);
+        return new TestZnanja(rs.getLong("id"), rs.getString("naziv"), rs.getDouble("poeni_za_prolaz"), null, null);
     }
 
     @Override
@@ -107,6 +118,7 @@ public class TestZnanja implements GenericEntity {
             statement.setLong(1, testZnanja.getId());
             statement.setString(2, testZnanja.getNaziv());
             statement.setDouble(3, testZnanja.getPoeniZaProlaz());
+            statement.setLong(4, testZnanja.getTipTestaZnanja().getId());
         } catch (SQLException ex) {
             Logger.getLogger(TestZnanja.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -115,7 +127,7 @@ public class TestZnanja implements GenericEntity {
 
     @Override
     public String toString() {
-        return "TestZnanja{" + "id=" + id + ", naziv=" + naziv + ", poeniZaProlaz=" + poeniZaProlaz + '}';
+        return "TestZnanja{" + "id=" + id + ", naziv=" + naziv + ", poeniZaProlaz=" + poeniZaProlaz + ", listaPitanja=" + listaPitanja + ", tipTestaZnanja=" + tipTestaZnanja + '}';
     }
 
 }
