@@ -12,14 +12,29 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * Predstavlja administratora u sistemu.
+ *
+ * Nasledjuje generickog korisnika.
  *
  * @author Pavle
  */
 public class Administrator extends GenericUser {
 
+    /**
+     * Neparametrizovani konstruktor za kreiranje instance administratora.
+     */
     public Administrator() {
     }
 
+    /**
+     * Parametrizovani konstruktor za kreiranje instance administratora.
+     * @param id - Vrednost koja se dodeljuje ID-u administratora.
+     * @param ime - Vrednost koja se dodeljuje imenu administratora.
+     * @param prezime - Vrednost koja se dodeljuje prezimenu administratora.
+     * @param datumRodjenja - Vrednost koja se dodeljuje datumu rodjenja administratora.
+     * @param username - Vrednost koja se dodeljuje korisnickom imenu administratora.
+     * @param password - Vrednost koja se dodeljuje lozinki administratora.
+     */
     public Administrator(long id, String ime, String prezime, LocalDate datumRodjenja, String username, String password) {
         super(id, ime, prezime, datumRodjenja, username, password);
     }

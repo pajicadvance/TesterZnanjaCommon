@@ -12,26 +12,59 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * Predstavlja urednika u sistemu.
  *
- * @author Pavle
+ * Sadrzi objekat tipa Administrator koji predstavlja administratora koji je dodao urednika.
+ *
+ * @author Pavle Pajic
+ * @since 1.0.0
  */
 public class Urednik extends GenericUser {
 
+    /**
+     * Administrator koji je dodao urednika u sistem.
+     */
     private Administrator administrator;
-    
+
+    /**
+     * Neparametrizovani konstruktor za kreiranje instance urednika.
+     */
     public Urednik() {
     }
 
+    /**
+     * Parametrizovani konstruktor za kreiranje instance urednika.
+     * @param id - Vrednost koja se dodeljuje ID-u urednika.
+     * @param ime - Vrednost koja se dodeljuje imenu urednika.
+     * @param prezime - Vrednost koja se dodeljuje prezimenu urednika.
+     * @param datumRodjenja - Vrednost koja se dodeljuje datumu rodjenja urednika.
+     * @param username - Vrednost koja se dodeljuje korisnickom imenu urednika.
+     * @param password - Vrednost koja se dodeljuje lozinki urednika.
+     * @param administrator - Administrator koji se dodeljuje administratoru urednika.
+     */
     public Urednik(long id, String ime, String prezime, LocalDate datumRodjenja, String username, String password, Administrator administrator) {
         super(id, ime, prezime, datumRodjenja, username, password);
-        this.administrator = administrator;
+        setAdministrator(administrator);
     }
 
+    /**
+     * Vraca administratora vezanog za urednika.
+     * @return administrator - Administrator vezan za urednika.
+     */
     public Administrator getAdministrator() {
         return administrator;
     }
 
+    /**
+     * Postavlja novu vrednost za atribut Administrator urednika.
+     * @param administrator - Nova vrednost za atribut administrator.
+     *
+     * @throws NullPointerException - ako se unese null vrednost za administrator
+     */
     public void setAdministrator(Administrator administrator) {
+        if(administrator == null)
+            throw new NullPointerException("Administrator urednika ne sme biti null.");
+
         this.administrator = administrator;
     }
 

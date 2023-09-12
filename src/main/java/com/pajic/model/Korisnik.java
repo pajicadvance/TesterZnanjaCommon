@@ -12,14 +12,30 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * Predstavlja korisnika u sistemu.
  *
- * @author Pavle
+ * Nasledjuje generickog korisnika.
+ *
+ * @author Pavle Pajic
+ * @since 1.0.0
  */
 public class Korisnik extends GenericUser {
 
+    /**
+     * Neparametrizovani konstruktor za kreiranje instance korisnika.
+     */
     public Korisnik() {
     }
 
+    /**
+     * Parametrizovani konstruktor za kreiranje instance korisnika.
+     * @param id - Vrednost koja se dodeljuje ID-u korisnika.
+     * @param ime - Vrednost koja se dodeljuje imenu korisnika.
+     * @param prezime - Vrednost koja se dodeljuje prezimenu korisnika.
+     * @param datumRodjenja - Vrednost koja se dodeljuje datumu rodjenja korisnika.
+     * @param username - Vrednost koja se dodeljuje korisnickom imenu korisnika.
+     * @param password - Vrednost koja se dodeljuje lozinki korisnika.
+     */
     public Korisnik(long id, String ime, String prezime, LocalDate datumRodjenja, String username, String password) {
         super(id, ime, prezime, datumRodjenja, username, password);
     }
