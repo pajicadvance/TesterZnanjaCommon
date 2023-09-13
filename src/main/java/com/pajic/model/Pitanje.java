@@ -4,6 +4,8 @@
  */
 package com.pajic.model;
 
+import com.google.gson.annotations.Expose;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,6 +25,7 @@ public class Pitanje implements GenericEntity {
     /**
      * ID pitanja.
      */
+    @Expose
     private long id;
     /**
      * Test znanja kome pitanje pripada.
@@ -31,14 +34,17 @@ public class Pitanje implements GenericEntity {
     /**
      * Tekst pitanja.
      */
+    @Expose
     private String tekst;
     /**
      * Poeni koje nosi pitanje.
      */
+    @Expose
     private double poeni;
     /**
      * Lista odgovora na pitanje.
      */
+    @Expose
     private List<Odgovor> listaOdgovora;
 
     /**
@@ -149,13 +155,8 @@ public class Pitanje implements GenericEntity {
     /**
      * Postavlja novu vrednost za atribut listaOdgovora.
      * @param listaOdgovora - Nova vrednost za atribut listaOdgovora.
-     *
-     * @throws NullPointerException - ako se unese null vrednost za listaOdgovora
      */
     public void setListaOdgovora(List<Odgovor> listaOdgovora) {
-        if(listaOdgovora == null)
-            throw new NullPointerException("Lista odgovora ne sme biti null.");
-
         this.listaOdgovora = listaOdgovora;
     }
 
@@ -215,11 +216,6 @@ public class Pitanje implements GenericEntity {
             Logger.getLogger(Pitanje.class.getName()).log(Level.SEVERE, null, ex);
         }
         return statement;
-    }
-
-    @Override
-    public String toString() {
-        return "    Pitanje{" + "id=" + id + ", testZnanja=" + testZnanja + ", tekst=" + tekst + ", poeni=" + poeni + '}';
     }
     
 }

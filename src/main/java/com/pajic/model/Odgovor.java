@@ -4,6 +4,8 @@
  */
 package com.pajic.model;
 
+import com.google.gson.annotations.Expose;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,6 +24,7 @@ public class Odgovor implements GenericEntity {
     /**
      * ID odgovora.
      */
+    @Expose
     private long id;
     /**
      * Pitanje kome odgovor pripada.
@@ -34,10 +37,12 @@ public class Odgovor implements GenericEntity {
     /**
      * Tekst odgovora.
      */
+    @Expose
     private String tekst;
     /**
      * Da li je odgovor tacan.
      */
+    @Expose
     private boolean tacan;
 
     /**
@@ -215,9 +220,5 @@ public class Odgovor implements GenericEntity {
         return statement;
     }
 
-    @Override
-    public String toString() {
-        return "        Odgovor{" + "id=" + id + ", pitanje=" + pitanje + ", testZnanja=" + testZnanja + ", tekst=" + tekst + ", tacan=" + tacan + '}';
-    }
     
 }

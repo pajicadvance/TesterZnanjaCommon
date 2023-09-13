@@ -29,7 +29,13 @@ public class TipTestaZnanja implements GenericEntity {
     private String naziv;
 
     /**
-     * Parametrizovani konstruktor kreiranje instance tipa testa znanja.
+     * Nepaarametrizovani konstruktor za kreiranje instance tipa testa znanja.
+     */
+    public TipTestaZnanja() {
+    }
+
+    /**
+     * Parametrizovani konstruktor za kreiranje instance tipa testa znanja.
      * @param id - Vrednost koja se dodeljuje ID-u tipa testa znanja.
      * @param naziv - Vrednost koja se dodeljuje nazivu tipa testa znanja.
      */

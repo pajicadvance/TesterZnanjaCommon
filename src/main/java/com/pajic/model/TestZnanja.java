@@ -4,6 +4,8 @@
  */
 package com.pajic.model;
 
+import com.google.gson.annotations.Expose;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,18 +25,22 @@ public class TestZnanja implements GenericEntity {
     /**
      * ID testa znanja.
      */
+    @Expose
     private long id;
     /**
      * Naziv testa znanja.
      */
+    @Expose
     private String naziv;
     /**
      * Poeni potrebni za prolaz testa znanja.
      */
+    @Expose
     private double poeniZaProlaz;
     /**
      * Lista pitanja testa znanja.
      */
+    @Expose
     private List<Pitanje> listaPitanja;
     /**
      * Tip testa znanja.
@@ -74,13 +80,8 @@ public class TestZnanja implements GenericEntity {
     /**
      * Postavlja novu vrednost za atribut tipTestaZnanja.
      * @param tipTestaZnanja - Nova vrednost za atribut tipTestaZnanja.
-     *
-     * @throws NullPointerException - ako se unese null vrednost za tipTestaZnanja
      */
     public void setTipTestaZnanja(TipTestaZnanja tipTestaZnanja) {
-        if(tipTestaZnanja == null)
-            throw new NullPointerException("Tip testa znanja ne sme biti null.");
-
         this.tipTestaZnanja = tipTestaZnanja;
     }
 
@@ -150,13 +151,8 @@ public class TestZnanja implements GenericEntity {
     /**
      * Postavlja novu vrednost za atribut listaPitanja.
      * @param listaPitanja - Nova vrednost za atribut listaPitanja.
-     *
-     * @throws NullPointerException - ako se unese null vrednost za listaPitanja
      */
     public void setListaPitanja(List<Pitanje> listaPitanja) {
-        if(listaPitanja == null)
-            throw new NullPointerException("Lista pitanja ne sme biti null.");
-
         this.listaPitanja = listaPitanja;
     }
 
@@ -189,7 +185,9 @@ public class TestZnanja implements GenericEntity {
 
     @Override
     public GenericEntity selectObject(ResultSet rs) throws SQLException {
-        return new TestZnanja(rs.getLong("id"), rs.getString("naziv"), rs.getDouble("poeni_za_prolaz"), null, null);
+        TipTestaZnanja tip = new TipTestaZnanja();
+        tip.setId(rs.getLong("tip_testa_znanja_id"));
+        return new TestZnanja(rs.getLong("id"), rs.getString("naziv"), rs.getDouble("poeni_za_prolaz"), null, tip);
     }
 
     @Override
@@ -222,9 +220,5 @@ public class TestZnanja implements GenericEntity {
         return statement;
     }
 
-    @Override
-    public String toString() {
-        return "TestZnanja{" + "id=" + id + ", naziv=" + naziv + ", poeniZaProlaz=" + poeniZaProlaz + ", listaPitanja=" + listaPitanja + ", tipTestaZnanja=" + tipTestaZnanja + '}';
-    }
 
 }
