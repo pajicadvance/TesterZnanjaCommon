@@ -197,6 +197,12 @@ public class Odgovor implements GenericEntity {
 
     @Override
     public void setId(Long id) {
+        if(id == null)
+            throw new NullPointerException("ID vrednost ne sme biti null.");
+
+        if(id < 1)
+            throw new IllegalArgumentException("ID vrednost ne sme biti manja od 1.");
+
         this.id = id;
     }
 
